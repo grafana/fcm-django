@@ -4,9 +4,6 @@ import django.db.models.deletion
 from django.conf import settings
 from django.db import migrations, models
 
-FCM_DJANGO_SETTINGS = getattr(settings, "FCM_DJANGO_SETTINGS", {})
-USER_MODEL = FCM_DJANGO_SETTINGS.get("USER_MODEL", settings.AUTH_USER_MODEL)
-
 
 class Migration(migrations.Migration):
 
@@ -22,7 +19,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                to=USER_MODEL,
+                to=settings.FCM_DJANGO_SETTINGS["USER_MODEL"],
             ),
         ),
     ]
